@@ -21,3 +21,10 @@ RUN pecl install xdebug-2.5.5 \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /tmp/pear \
+
+
+RUN pecl install xhprof-0.9.4 \
+    && echo "extension=xhprof.so" > /usr/local/etc/php/conf.d/xhprof.ini \
+    && echo "xhprof.output_dir=/var/log/xhprof" >> /usr/local/etc/php/conf.d/xhprof.ini \
+    && mkdir /var/log/xhprof \
+    && chmod 777 /var/log/xhprof
